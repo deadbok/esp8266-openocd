@@ -12,6 +12,7 @@ config.status
 libtool
 stamp-h1
 .dirstamp
+autom4te.cache
 
 src/jtag/minidriver_imp.h
 src/startup.tcl
