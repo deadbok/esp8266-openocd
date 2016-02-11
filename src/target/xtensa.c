@@ -1134,8 +1134,8 @@ static int xtensa_set_breakpoint(struct target *target, struct breakpoint *break
 	return ERROR_OK;
 }
 
-static const uint8_t s_3ByteBreakpoint[] = { 0x00, 0x40, 0x00 };
-static const uint8_t s_2ByteBreakpoint[] = { 0x2d, 0xf0 };
+static uint8_t s_3ByteBreakpoint[] = { 0x00, 0x40, 0x00 };
+static uint8_t s_2ByteBreakpoint[] = { 0x2d, 0xf0 };
 
 static int xtensa_add_breakpoint(struct target *target, struct breakpoint *breakpoint)
 {
@@ -1148,7 +1148,7 @@ static int xtensa_add_breakpoint(struct target *target, struct breakpoint *break
 
 	if (breakpoint->type == BKPT_SOFT) {
 		uint8_t *pBreakpointInsn = NULL;
-		char tmpBuf[16];
+		uint8_t tmpBuf[16];
 		int res = xtensa_read_buffer(target, breakpoint->address, breakpoint->length, breakpoint->orig_instr);
 		if (res != ERROR_OK)
 			return res;
@@ -1516,7 +1516,7 @@ static void xtensa_feed_esp8266_watchdog(struct target *target)
 	}
 }
 
-static COMMAND_HELPER(xtensa_no_interrupts_during_steps, const char **sep, const char **name)
+COMMAND_HANDLER(xtensa_no_interrupts_during_steps)
 {
 	if (CMD_ARGC > 1)
 		return ERROR_COMMAND_SYNTAX_ERROR;
@@ -1528,7 +1528,7 @@ static COMMAND_HELPER(xtensa_no_interrupts_during_steps, const char **sep, const
 	return ERROR_OK;
 }
 
-static COMMAND_HELPER(esp8266_autofeed_watchdog, const char **sep, const char **name)
+COMMAND_HANDLER(esp8266_autofeed_watchdog)
 {
 	if (CMD_ARGC > 1)
 		return ERROR_COMMAND_SYNTAX_ERROR;
