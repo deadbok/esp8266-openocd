@@ -1,0 +1,19 @@
+#Build files.
+*.o
+*.lo
+*.la
+.libs
+.deps
+
+Makefile
+*.log
+config.h
+config.status
+libtool
+stamp-h1
+.dirstamp
+
+src/jtag/minidriver_imp.h
+src/startup.tcl
+src/startup_tcl.inc
+src/target/xscale_debug.inc
